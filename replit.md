@@ -1,6 +1,6 @@
-# [Project name]
+# EduPro Learner Analytics
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+An interactive learner intelligence dashboard that analyzes the supplied EduPro Users CSV for demographic reach, representation, and roster-level exploration.
 
 ## Run & Operate
 
@@ -22,15 +22,23 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/edupro-learner-analytics/src/App.tsx` — dashboard UI, CSV parsing, filters, derived demographic metrics, and roster export
+- `artifacts/edupro-learner-analytics/src/index.css` — EduPro dashboard theme and responsive visual system
+- `artifacts/edupro-learner-analytics/public/data/users.csv` — supplied learner roster used by the dashboard
+- `artifacts/edupro-learner-analytics/public/data/requirements.txt` — supplied analysis brief
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- The first build is frontend-only and reads the supplied CSV from the artifact's public data directory; no database or external integration is needed for this static source.
+- Age bands are derived from the analysis brief and demographic summaries recompute from the active filters.
+- Course, enrollment, category, level, and transaction metrics are intentionally not fabricated because only the Users table was supplied.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+- Shows roster size, average age, observed age range, age-band distribution, and supplied gender composition.
+- Supports age-band, gender, and free-text learner search filters.
+- Exports the current filtered learner roster as CSV.
+- Communicates the dataset coverage boundary and preserves raw gender labels.
 
 ## User preferences
 

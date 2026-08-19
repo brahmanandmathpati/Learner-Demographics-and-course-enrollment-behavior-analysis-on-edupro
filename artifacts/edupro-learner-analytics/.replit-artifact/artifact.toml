@@ -1,0 +1,28 @@
+kind = "data-app"
+previewPath = "/"
+title = "EduPro Learner Analytics"
+description = "An interactive learner intelligence dashboard for EduPro that analyzes the attached user demographics dataset, surfaces age and gender participation patterns, and clearly identifies enrollment analysis that requires the missing course and transaction tables."
+version = "1.0.0"
+id = "artifacts/edupro-learner-analytics"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19079
+
+[services.development]
+run = "pnpm --filter @workspace/edupro-learner-analytics run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/edupro-learner-analytics", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/edupro-learner-analytics/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19079"
+BASE_PATH = "/"
